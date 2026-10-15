@@ -49,9 +49,9 @@ public final class Main {
     }
 
     // ---------- Fonctionnalité 2 : XPath ----------
-    static Document charger(String xmlRes) throws Exception {
+    static Document charger() throws Exception {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        try (InputStream in = Main.class.getResourceAsStream(xmlRes)) {
+        try (InputStream in = Main.class.getResourceAsStream(Main.XML_FILE)) {
             return dbf.newDocumentBuilder().parse(in);
         }
     }
@@ -89,7 +89,7 @@ public final class Main {
         }
 
         System.out.println("\n=== 2. Interrogation XPath ===");
-        Document doc = charger(XML_FILE);
+        Document doc = charger();
 
         afficher(doc, "Noms de tous les cours",
                 "//cour/nom");
