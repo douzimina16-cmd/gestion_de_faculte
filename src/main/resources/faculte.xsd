@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <!-- Types simples -->
+    <xs:simpleType name="noteType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="emailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@\s]+@[^@\s]+\.[^@\s]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Types complexes -->
+    <xs:complexType name="noteComplexType">
+        <xs:simpleContent>
+            <xs:extension base="noteType">
+                <xs:attribute name="etudiantid" type="xs:IDREF" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="etudiantType">
+        <xs:sequence>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="prenom" type="xs:string"/>
+            <xs:element name="email" type="emailType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="enseignantType">
+        <xs:sequence>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="prenom" type="xs:string"/>
+            <xs:element name="grade" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="courType">
+        <xs:sequence>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="coefficient" type="xs:positiveInteger"/>
+            <xs:element name="notes">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="note" type="noteComplexType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="sectionType">
+        <xs:sequence>
+            <xs:element name="etudiants">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="etudiant" type="etudiantType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="enseignants">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="enseignant" type="enseignantType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cours">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="cour" type="courType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+        <xs:attribute name="nom" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="filiereType">
+        <xs:sequence>
+            <xs:element name="sections">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="section" type="sectionType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+        <xs:attribute name="nom" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <!-- Élément racine -->
+    <xs:element name="faculte">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="filieres">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="filiere" type="filiereType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="nom" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

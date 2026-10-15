@@ -1,0 +1,69 @@
+<faculte xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="faculte.xsd" nom="faculte de science">
+    <filieres>
+        <filiere id="fl1" nom="Informatique">
+            <sections>
+                <section id="S1" nom="LSI">
+                    <etudiants>
+                        <etudiant id="E1">
+                            <nom>zweri</nom>
+                            <prenom>ahmed</prenom>
+                            <email>ahmedzweri@gmail.com</email>
+                        </etudiant>
+                        <etudiant id="E2">
+                            <nom>douzi</nom>
+                            <prenom>talel</prenom>
+                            <email>talelzweri@gmail.com</email>
+                        </etudiant>
+                        <etudiant id="E3">
+                            <nom>zayen</nom>
+                            <prenom>marwa</prenom>
+                            <email>zayenmarwa@gmail.com</email>
+                        </etudiant>
+                        <etudiant id="E4">
+                            <nom>hamed</nom>
+                            <prenom>takwa</prenom>
+                            <email>hamedtakwa@gmail.com</email>
+                        </etudiant>
+                    </etudiants>
+                    <enseignants>
+                        <enseignant id="ens1">
+                            <nom>benali</nom>
+                            <prenom>mohamed</prenom>
+                            <grade>maitre assistant</grade>
+                        </enseignant>
+                        <enseignant id="ens2">
+                            <nom>jaziri</nom>
+                            <prenom>ahlem</prenom>
+                            <grade>professeur</grade>
+                        </enseignant>
+                        <enseignant id="ens3">
+                            <nom>fourati</nom>
+                            <prenom>wissem</prenom>
+                            <grade>professeur</grade>
+                        </enseignant>
+                    </enseignants>
+                    <cours>
+                        <cour id="c1">
+                            <nom>services web</nom>
+                            <coefficient>2</coefficient>
+                            <notes>
+                                <note etudiantid="E1">15</note>
+                                <note etudiantid="E2">17</note>
+                                <note etudiantid="E4">18</note>
+                            </notes>
+                        </cour>
+                        <cour id="c2">
+                            <nom>machine learning</nom>
+                            <coefficient>3</coefficient>
+                            <notes>
+                                <note etudiantid="E1">16</note>
+                                <note etudiantid="E2">14</note>
+                                <note etudiantid="E3">12</note>
+                            </notes>
+                        </cour>
+                    </cours>
+                </section>
+            </sections>
+        </filiere>
+    </filieres>
+</faculte>
